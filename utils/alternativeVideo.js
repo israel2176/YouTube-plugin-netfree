@@ -1,5 +1,3 @@
-// utils/alternativeVideo.js
-
 import { debugLog } from './debug.js';
 
 function getCurrentTabId() {
