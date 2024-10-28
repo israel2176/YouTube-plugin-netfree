@@ -1,5 +1,3 @@
-// utils/config.js
-
 const config = {
     DEBUG_MODE: false ,
     SERVER_URL: 'https://israelserver.site',
