@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "Ongoing YouTube transition for NF",
+  "version": "1.1",
+  "description": "Replace a YouTube video blocked by Netfree, with another open video",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+ 
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["content.js"],
+      "type": "module"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["utils/*.js", "features/*.js"],
+      "matches": ["https://www.youtube.com/*"]
+    }
+ 
+ ],
+
+
+ "options_page": "HTML/options.html",
+ "action": {
+   "default_popup": "HTML/options.html"
+ }
+
+}
