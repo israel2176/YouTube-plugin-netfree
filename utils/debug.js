@@ -1,5 +1,3 @@
-// utils/debug.js
-
 let config;
 
 async function loadConfig() {
