@@ -1,5 +1,3 @@
-// features/id.js
-
 const videoIds = [
     "nuyT4iW05Jc",
     "mSSevB5deHU",
