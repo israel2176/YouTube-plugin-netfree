@@ -32,11 +32,5 @@
 
 ## הוצאת גרסה חדשה
 
-1. מעדכנים את `version` בקובץ `manifest.json`.
-2. יוצרים תג בהתאם ודוחפים אותו, לדוגמה:
-
-```bash
-git tag v2.0 && git push origin v2.0
-```
-
+מעדכנים את `version` בקובץ `manifest.json` וממזגים ל־`main`.
 הגרסה תיבנה ותפורסם אוטומטית בעמוד Releases.
