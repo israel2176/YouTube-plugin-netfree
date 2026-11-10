@@ -1,8 +1,10 @@
 name: Release
 
+# בכל דחיפה ל-main: אם הגרסה ב-manifest.json עוד לא פורסמה – בונה zip ומפרסם Release.
 on:
   push:
-    tags: ['v*']
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -10,9 +12,12 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: actions/checkout@v4
-      - run: zip -r "youtube-netfree-$GITHUB_REF_NAME.zip" manifest.json content.js HTML icon16.png icon48.png icon128.png
-      - run: gh release create "$GITHUB_REF_NAME" youtube-netfree-*.zip --title "$GITHUB_REF_NAME" --generate-notes
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - run: |
+          TAG="v$(jq -r .version manifest.json)"
+          gh release view "$TAG" >/dev/null 2>&1 && { echo "$TAG already released"; exit 0; }
+          zip -r "youtube-netfree-$TAG.zip" manifest.json content.js HTML icon16.png icon48.png icon128.png
+          gh release create "$TAG" "youtube-netfree-$TAG.zip" --target "$GITHUB_SHA" --title "$TAG" --generate-notes
